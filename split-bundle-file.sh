@@ -16,7 +16,7 @@ if ! mkdir -p "${OUTPUT_DIR}"; then
  
 # For each certificate in the bundle, split the bundle into a new file in the output directory
 cd "${OUTPUT_DIR}"
-if ! csplit -- silent -k "${bundle_file}" '/END CERTIFICATE/+1' {*}; then
+if ! csplit --silent -k "${BUNDLE_FILE}" '/END CERTIFICATE/+1' {*}; then
   exit 1
 fi
 
@@ -30,8 +30,9 @@ for _file in *; do
     # Rename the file by extracting the CN information from the certificate
     NEW_NAME=$(echo "${SUBJECT##*=}.pem" | tr '\ ' '-')
     if [[ "${_file}" != "${NEW_NAME}" ]]; then
-      rm "${_file}"
+      mv "${_file}" "${NEW_NAME}"
     fi
+    
   # Remove any files created that contain nothing
   elif [[ -z $(cat "${_file}") ]]; then
     rm "${_file}"
