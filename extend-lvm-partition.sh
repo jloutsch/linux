@@ -16,7 +16,7 @@ size="$1"
 increaseSize="$2"
 partition="$3"
 
-newDisk=$(lsblk -o SIZE,NAME | grep "[[:space:]]${size}G[[:space:]]" | awk '{print $2}')
+newDisk=$(lsblk -o SIZE,NAME | grep "[[:space:]]${size}G[[:space:]]" | tail -n 1 | awk '{print $2}')
 diskPath="/dev/${newDisk}"
 vg=$(vgdisplay | grep 'VG Name' | awk '{print $3}')
 lv=$(lvdisplay | grep 'LV Path' | grep -i "${partition}$" | awk '{print $3}')
