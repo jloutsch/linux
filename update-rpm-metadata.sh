@@ -2,6 +2,20 @@
 cdnroot=$1
 owner=$2
 group=$3
+MAXPROCESSES=10
+SLEEP=5
+
+function waitForBackgroundJobs {
+  local maxProcs=$1
+  local sleepTime=$2
+  
+  numberOfCurrentJobs=$( jobs -p | wc -l)
+  while [[ "${numberOfCurrentJobs}" -gt "${maxProcs}" ]]; do
+    echo "Sleeping ${sleepTime} seconds until the ${numberOfCurrentJobs} jobs goes below ${maxProcs}"
+    sleep "${sleepTime}"
+    numberOfCurrentJobs=$(jobs -p | wc -l)
+  done
+}
 
 if [[ "$#" -ne 3 ]]; then
   echo "Usage: $0 path_to_cdn_root file_owner group_owner"
@@ -26,6 +40,8 @@ for directory in $(find "${cdnroot}" -type d -name "repodata"); do
       compsFiles+=("${directory}/${repodataFile}")
     fi
   done
+  
+  waitForBackgroundJobs $MAXPROCESSES $SLEEP
   
   # If no group files exist, run createrepo with no group option
   if [[ ${#compsFiles[@]} -eq 0 ]]; then
