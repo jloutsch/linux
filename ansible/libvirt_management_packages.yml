@@ -1,0 +1,9 @@
+---
+- hosts: localhost
+  tasks:
+    - name: Install libvirt management packages
+      yum: 
+        name:
+          - libvirt-client 
+          - virt-install
+        state: present
