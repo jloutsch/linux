@@ -1,5 +1,5 @@
 ---
-layout: post
+layout: default
 title: Using nonlocal in Python Closures
 categories: [python]
 tags: [python, closures, decorators, nonlocal]
