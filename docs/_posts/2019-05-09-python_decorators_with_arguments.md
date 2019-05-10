@@ -3,6 +3,7 @@ layout: post
 title: Using nonlocal in Python Closures
 categories: [python]
 tags: [python, closures, decorators, nonlocal]
+theme:  jekyll-theme-slate
 ---
 # Using `nonlocal` in Python Closures
 
