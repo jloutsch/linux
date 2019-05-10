@@ -13,7 +13,7 @@ I've always struggled to understand what the Python `nonlocal` keyword was usefu
 
 If you want to save any kind of state with your closure, you will only be able to read the variable, **not** modify *or* even use it in a conditional.
 
-For Example, assume you have following decorator (which is just a closure) that will only run the specified function once the counter reaches 0:
+For Example, assume you the have following decorator (which is just a closure) that will only run the specified function once the counter reaches 0:
 
 ```python
 def countDown(num):
@@ -66,4 +66,4 @@ def hello():
 hello()
 ```
 
-Now the closure will behave as you intuitively expected it to
+Now the closure will behave as you intuitively expected it to.
