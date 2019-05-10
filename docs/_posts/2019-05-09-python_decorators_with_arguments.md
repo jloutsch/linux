@@ -49,8 +49,7 @@ To fix this, you have to stick a `nonlocal` declaration in the *same* block that
 ```python
 def countDown(num):
     def decorator(f):
-        def inner(*args, **kwar:w
-            gs)
+        def inner(*args, **kwargs):
             nonlocal num
             if num < 1:
                 f(*args, **kwargs)
