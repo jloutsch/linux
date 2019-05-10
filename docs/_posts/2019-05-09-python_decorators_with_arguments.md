@@ -1,3 +1,4 @@
+---
 layout: post
 title: Using nonlocal in Python Closures
 categories: [python]
