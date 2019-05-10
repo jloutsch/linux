@@ -1,9 +1,11 @@
 ---
 - hosts: 127.0.0.1
+  become: true
   tasks:
     - name: Install libvirt management packages
       yum: 
         name:
           - libvirt-client 
+          - virt-viewer
           - virt-install
         state: present
