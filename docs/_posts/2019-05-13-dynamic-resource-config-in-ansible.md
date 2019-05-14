@@ -17,9 +17,9 @@ For example, the fact `ansible_memtotal_mb` can easily be used when rendering a 
 
 ```jinja
 # some-jvm-option-file.conf
-{% raw -%}
+{%- raw -%}
 JAVA_OPTS="-Xms{{ (ansible_memtotal_mb * 0.5) | round | int }}m -Xmx{{ (ansible_memtotal_mb * 0.5) | round | int }}m"
-{%- endraw %}
+{%- endraw -%}
 ```
 
 
