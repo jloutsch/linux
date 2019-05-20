@@ -2,3 +2,4 @@ theme: jekyll-theme-slate
 title: SysAdmin Journeys
 description: Solutions to annoying computer problems
 show_downloads: false
+google_analytics: UA-140160509-1
