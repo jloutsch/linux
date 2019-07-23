@@ -76,5 +76,5 @@ mount -o anon \\your-server\export z:
 
 ### Conclusion
 All we have done is allow the client to successfully establish a connection to the server. We have also configured
-the share to be publicily writeable, and each user is squashed to the nfsnobody user. There is no security here. The goal
+the share to be publicly writeable, and each user is squashed to the nfsnobody user. There is no security here. The goal
 was to just establish a working communication between the Windows NFS client, and the Linux NFS server.
