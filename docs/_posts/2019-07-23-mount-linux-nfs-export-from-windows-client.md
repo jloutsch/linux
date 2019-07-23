@@ -8,6 +8,7 @@ theme:  jekyll-theme-slate
 # Mount Public Linux NFS Export From Windows Client
 
 ## Environment
+
 |Role|Version|
 |---|---|
 |NFS Client|Windows 10 Enterprise|
@@ -69,7 +70,7 @@ You should now be able to create a successful mount from a Windows client (After
 mount -o anon \\your-server\export z:
 ```
 
-### WARNING
+### Conclusion
 All we have done is allow the client to successfully establish a connection to the server. We have also configured
 the share to be publicily writeable, and each user is squashed to the nfsnobody user. There is no security here. The goal
 was to just establish a working communication between the Windows NFS client, and the Linux NFS server.
