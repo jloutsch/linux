@@ -24,6 +24,12 @@ then you will run into problems when you try to mount from a Windows client. Thi
 
 ### Server
 
+#### Install
+If not performed already, install the NFS package
+```bash
+yum -y install nfs-utils
+```
+
 #### Firewall
 The three required Windows ports are determined by the RPC services running on the server:
 
