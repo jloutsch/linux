@@ -54,7 +54,8 @@ firewall-cmd --reload
 #### Exports
 ```
 # /etc/exports
-# the all_squash here is important as it maps each user to the NFS anonymous user
+# all_squash here is important as it 
+# maps each user to the NFS anonymous user
 /export_test *(rw,all_squash)
 ```
 ```
