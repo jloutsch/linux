@@ -58,10 +58,13 @@ firewall-cmd --reload
 # maps each user to the NFS anonymous user
 /export_test *(rw,all_squash)
 ```
+
+#### Create export and start server
 ```
 mkdir -p /export_test
 chown -R nfsnobody:nfsnobody /export_test
 systemctl restart nfs
+systemctl enable nfs
 ```
 
 ### Client
