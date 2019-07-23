@@ -30,14 +30,21 @@ The three required Windows ports are determined by the RPC services running on t
 
 You can determine what these exact ports are by running the following command on the NFS server:
 
-```
-rpcinfo -p | egrep '(portmapper|mountd|nfs$)' | awk '{print $5" "$4}' | uniq
+```bash
+rpcinfo -p \
+  | egrep '(portmapper|mountd|nfs$)' \
+  | awk '{print $5" "$4}' \
+  | uniq
 ```
 
 Redhat 7 uses firewalld, so we will allow these ports through the firewall:
 
-```
-firewall-cmd --add-port=20048/tcp --add-port=111/tcp --add-port=2049/tcp --permanent
+```bash
+firewall-cmd \
+  --add-port=20048/tcp \
+  --add-port=111/tcp \
+  --add-port=2049/tcp \
+  --permanent
 firewall-cmd --reload
 ```
 
