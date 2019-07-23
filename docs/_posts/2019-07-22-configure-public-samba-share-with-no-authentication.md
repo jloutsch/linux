@@ -36,7 +36,7 @@ The following is all you need in your `smb.conf` to get this setup working:
 1. The key setting here is `map to guest = Bad User`. This is what will silence the username/password prompt.
 
 2. You may now be able to browse the share, but you will likely run into permission problems with reading/writing files.
-the share settings are what basically says "Anyone can mount this share, and has read/write access to it". Obviously this is inherently
+The share settings are what basically says "Anyone can mount this share, and has read/write access to it". Obviously this is inherently
 insecure. It is just a quick config to get a working solution for either a public share, or a proof of concept that you will later harden.
 
 3. Don't forget to perform OS configurations such as creating directories, handling permissions, and configuring SELinux:
