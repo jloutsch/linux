@@ -1,27 +1,29 @@
 ---
 layout: default
-title: Mount Linux NFS Export From Windows Client
+title: Mount Public Linux NFS Export From Windows Client
 categories: [nfs]
 tags: [nfs, linux, file_share, windows, firewall]
 theme:  jekyll-theme-slate
 ---
+# Mount Public Linux NFS Export From Windows Client
 
+## Environment
 |Role|Version|
 |---|---|
 |NFS Client|Windows 10 Enterprise|
 |Server OS|RedHat 7.6|
 |NFS Server|1.3.0|
 
-# Problem
+## Problem
 Setting up a basic NFS export for a Linux client is a simple task. However, if you have the host based firewall turned on
 then you will run into problems when you try to mount from a Windows client. This is because the linux client will
 *only* send packets over `2049/tcp` whereas the Windows client will send packets over a total of three ports.
 
-# Solution
+## Solution
 
-## Server
+### Server
 
-### Firewall
+#### Firewall
 The three required Windows ports are determined by the RPC services running on the server:
 
 - portmapper (Default `111/tcp`)
@@ -48,22 +50,26 @@ firewall-cmd \
 firewall-cmd --reload
 ```
 
-### Exports
+#### Exports
 ```
 # /etc/exports
-/export_test *(rw)
+# the all_squash here is important as it maps each user to the NFS anonymous user
+/export_test *(rw,all_squash)
 ```
 ```
+mkdir -p /export_test
+chown -R nfsnobody:nfsnobody /export_test
 systemctl restart nfs
 ```
 
-## Client
+### Client
 You should now be able to create a successful mount from a Windows client (After you've enabled the 
 ["Services For NFS" Feature](https://mapr.com/docs/60/AdministratorGuide/MountingNFSonWindowsClient.html))
 ```
 mount -o anon \\your-server\export z:
 ```
 
-## WARNING
-All we have done is allow the client to successfully establish a connection to the server. There is no identity
-mapping, or security configurations being performed here. Once you can mount the export, then you should focous on locking it down.
+### WARNING
+All we have done is allow the client to successfully establish a connection to the server. We have also configured
+the share to be publicily writeable, and each user is squashed to the nfsnobody user. There is no security here. The goal
+was to just establish a working communication between the Windows NFS client, and the Linux NFS server.
