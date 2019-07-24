@@ -77,7 +77,7 @@ systemctl enable nfs
 You should now be able to create a successful mount from a Windows client (After you've enabled the 
 ["Services For NFS" Feature](https://mapr.com/docs/60/AdministratorGuide/MountingNFSonWindowsClient.html))
 ```
-mount -o anon \\your-server\export z:
+mount -o anon \\YOUR-SERVER\export_test z:
 ```
 
 ### Conclusion
